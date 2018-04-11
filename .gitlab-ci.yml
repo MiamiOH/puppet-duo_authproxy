@@ -10,7 +10,13 @@ before_script:
   - gem update bundler
   - gem --version
   - bundle -v
-  - bundle install --without system_tests
+  - bundle install --without system_tests --path vendor/bundle
+
+cache:
+  key: "$CI_JOB_STAGE-$CI_COMMIT_REF_NAME"
+  paths:
+    - vendor/bundle
+
 
 rubocop-2.4.1:
   stage: test_2.4.1
@@ -67,4 +73,3 @@ rspec-puppet-2.1.9:
   script:
     - bundle update
     - bundle exec rake $CHECK
-
