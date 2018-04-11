@@ -33,6 +33,29 @@ group :development do
   gem "puppet-module-win-default-r#{minor_version}",   require: false, platforms: [:mswin, :mingw, :x64_mingw]
   gem "puppet-module-win-dev-r#{minor_version}",       require: false, platforms: [:mswin, :mingw, :x64_mingw]
 end
+group :puppet_lint do
+  gem "puppet-lint-absolute_classname-check",                      require: false
+  gem "puppet-lint-absolute_template_path",                        require: false
+  gem "puppet-lint-alias-check",                                   require: false
+  gem "puppet-lint-classes_and_types_beginning_with_digits-check", require: false
+  gem "puppet-lint-duplicate_class_parameters-check",              require: false
+  gem "puppet-lint-empty_string-check",                            require: false
+  gem "puppet-lint-extended",                                      require: false
+  gem "puppet-lint-file_ensure-check",                             require: false
+  gem "puppet-lint-file_source_rights-check",                      require: false
+  gem "puppet-lint-leading_zero-check",                            require: false
+  gem "puppet-lint-numericvariable",                               require: false
+  gem "puppet-lint-resource_reference_syntax",                     require: false
+  gem "puppet-lint-security-plugins",                              require: false
+  gem "puppet-lint-spaceship_operator_without_tag-check",          require: false
+  gem "puppet-lint-strict_indent-check",                           require: false
+  gem "puppet-lint-trailing_comma-check",                          require: false
+  gem "puppet-lint-trailing_newline-check",                        require: false
+  gem "puppet-lint-undef_in_function-check",                       require: false
+  gem "puppet-lint-unquoted_string-check",                         require: false
+  gem "puppet-lint-variable_contains_upcase",                      require: false
+  gem "puppet-lint-version_comparison-check",                      require: false
+end
 
 puppet_version = ENV['PUPPET_GEM_VERSION']
 puppet_type = gem_type(puppet_version)
@@ -114,7 +137,6 @@ end
 
 # Evaluate Gemfile.local and ~/.gemfile if they exist
 extra_gemfiles = [
-  "#{__FILE__}.extra",
   "#{__FILE__}.local",
   File.join(Dir.home, '.gemfile'),
 ]
