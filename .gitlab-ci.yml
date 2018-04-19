@@ -21,18 +21,24 @@ cache:
 rubocop-2.4.1:
   stage: test_2.4.1
   image: ruby:2.4.1
+  variables:
+    PUPPET_GEM_VERSION: ~> 5.0
   script:
     - bundle exec rake rubocop
 
 syntax-2.4.1:
   stage: test_2.4.1
   image: ruby:2.4.1
+  variables:
+    PUPPET_GEM_VERSION: ~> 5.0
   script:
     - bundle exec rake syntax lint
 
 metadata-2.4.1:
   stage: test_2.4.1
   image: ruby:2.4.1
+  variables:
+    PUPPET_GEM_VERSION: ~> 5.0
   script:
     - bundle exec rake metadata_lint
 
@@ -40,7 +46,7 @@ rspec-puppet-2.4.1:
   stage: test_2.4.1
   image: ruby:2.4.1
   variables:
-    PUPPET_GEM_VERSION: ~> 4.0
+    PUPPET_GEM_VERSION: ~> 5.0
     CHECK: spec
   script:
     - bundle update
@@ -49,18 +55,24 @@ rspec-puppet-2.4.1:
 rubocop-2.1.9:
   stage: test_2.1.9
   image: ruby:2.1.9
+  variables:
+    PUPPET_GEM_VERSION: ~> 4.0
   script:
     - bundle exec rake rubocop
 
 syntax-2.1.9:
   stage: test_2.1.9
   image: ruby:2.1.9
+  variables:
+    PUPPET_GEM_VERSION: ~> 4.0
   script:
     - bundle exec rake syntax lint
 
 metadata-2.1.9:
   stage: test_2.1.9
   image: ruby:2.1.9
+  variables:
+    PUPPET_GEM_VERSION: ~> 4.0
   script:
     - bundle exec rake metadata_lint
 
