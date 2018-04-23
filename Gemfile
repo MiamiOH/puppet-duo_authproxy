@@ -32,6 +32,8 @@ group :development do
   gem "puppet-module-posix-dev-r#{minor_version}",     require: false, platforms: [:ruby]
   gem "puppet-module-win-default-r#{minor_version}",   require: false, platforms: [:mswin, :mingw, :x64_mingw]
   gem "puppet-module-win-dev-r#{minor_version}",       require: false, platforms: [:mswin, :mingw, :x64_mingw]
+  gem "travis",                                        require: false
+  gem "puppet-blacksmith",                             require: false
 end
 group :puppet_lint do
   gem "puppet-lint-absolute_classname-check",                      require: false
