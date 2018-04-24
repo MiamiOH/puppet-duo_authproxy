@@ -7,8 +7,8 @@
 # @example
 #   include duo_authproxy
 class duo_authproxy (
-  Array  $dep_packages = [],
-  String $version      = 'latest',
+  Array[String] $dep_packages,
+  String $version,
 ) {
 
   contain '::duo_authproxy::install'
