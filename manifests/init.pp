@@ -9,7 +9,14 @@
 class duo_authproxy (
   Array[String] $dep_packages,
   String $version,
+  Stdlib::Absolutepath $install_dir,
+  $proxy_server = undef,
+  $proxy_type = undef,
 ) {
+
+  unless versioncmp($facts['python_version'], '2.6') >= 0 {
+    fail("${name} requires at least python version 2.6, you have ${facts['python_version']}.")
+  }
 
   contain '::duo_authproxy::install'
   contain '::duo_authproxy::config'
