@@ -10,7 +10,7 @@ class duo_authproxy::install {
 
   ensure_packages($duo_authproxy::dep_packages)
 
-  $inst_cmd = "./duoauthproxy-build/install --install-dir ${duo_authproxy::install_dir} --service-user nobody --create-init-script yes"
+  $inst_cmd = "duoauthproxy-build/install --install-dir ${duo_authproxy::install_dir} --service-user nobody --create-init-script yes"
   $creates_path = $duo_authproxy::install_dir
 
   archive { "/tmp/duoauthproxy-${duo_authproxy::version}-src.tgz":
@@ -23,8 +23,17 @@ class duo_authproxy::install {
     proxy_type   => $duo_authproxy::proxy_type,
   }
 
+  -> exec { 'duoauthproxy-make':
+    command     => 'make > duoauthproxy-make.log',
+    cwd         => "/tmp/duoauthproxy-${duo_authproxy::version}-src",
+    environment => ['PYTHON=python'],
+    path        => $facts['path'],
+    creates     => $creates_path,
+    require     => Package[$duo_authproxy::dep_packages],
+  }
+
   -> exec { 'duoauthproxy-install':
-    command     => "{ make && ${$inst_cmd}; } > duoauthproxy-install.log",
+    command     => "/tmp/duoauthproxy-${duo_authproxy::version}-src/${inst_cmd} > duoauthproxy-install.log",
     cwd         => "/tmp/duoauthproxy-${duo_authproxy::version}-src",
     environment => ['PYTHON=python'],
     path        => $facts['path'],
