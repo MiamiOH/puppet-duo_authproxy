@@ -7,4 +7,8 @@
 # @example
 #   don't use this class directly
 class duo_authproxy::config {
+
+  create_ini_settings($duo_authproxy::settings, {
+      'path' => "${duo_authproxy::install_dir}/conf/authproxy.cfg",
+  })
 }
