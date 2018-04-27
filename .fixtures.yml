@@ -6,3 +6,4 @@ fixtures:
      stdlib: "puppetlabs/stdlib"
      python: "stankevich/python"
      archive: "puppet/archive"
+     inifile: "puppetlabs/inifile"
