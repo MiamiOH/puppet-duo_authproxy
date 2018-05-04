@@ -14,6 +14,6 @@ class duo_authproxy::config {
     owner   => 'nobody',
     group   => 'root',
     mode    => '0640',
-    content => template("${module_name}/authproxy.cfg.erb"),
+    content => Sensitive(template("${module_name}/authproxy.cfg.erb")),
   }
 }
