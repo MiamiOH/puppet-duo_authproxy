@@ -8,7 +8,12 @@
 #   don't use this class directly
 class duo_authproxy::config {
 
-  create_ini_settings($duo_authproxy::settings, {
-      'path' => "${duo_authproxy::install_dir}/conf/authproxy.cfg",
-  })
+  file { 'authproxy.cfg':
+    ensure  => file,
+    path    => "${duo_authproxy::install_dir}/conf/authproxy.cfg",
+    owner   => 'nobody',
+    group   => 'root',
+    mode    => '0640',
+    content => template("${module_name}/authproxy.cfg.erb"),
+  }
 }
