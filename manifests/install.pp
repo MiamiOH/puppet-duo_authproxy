@@ -22,6 +22,13 @@ class duo_authproxy::install {
     proxy_server => $duo_authproxy::proxy_server,
     proxy_type   => $duo_authproxy::proxy_type,
   }
+  
+  -> exec { 'duoauthproxy-move':
+    command => "mv duoauthproxy-${duo_authproxy::version}*-src duoauthproxy-${duo_authproxy::version}-src",
+    cwd     => '/tmp',
+    path    => '/bin',
+    creates => $creates_path,
+  }
 
   -> exec { 'duoauthproxy-make':
     command     => 'make > duoauthproxy-make.log',
