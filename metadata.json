@@ -10,15 +10,15 @@
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",
-      "version_requirement": ">= 4.13.0 < 5.0.0"
+      "version_requirement": ">= 4.13.0 < 8.0.0"
     },
     {
       "name": "puppet/python",
-      "version_requirement": ">= 1.10.0 < 4.0.0"
+      "version_requirement": ">= 1.10.0 < 8.0.0"
     },
     {
       "name": "puppet/archive",
-      "version_requirement": ">= 1.1.0 < 6.0.0"
+      "version_requirement": ">= 1.1.0 < 8.0.0"
     }
   ],
   "operatingsystem_support": [
