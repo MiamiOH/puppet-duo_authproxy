@@ -47,3 +47,7 @@ Gemfile:
       - gem: puppet-lint-unquoted_string-check
       - gem: puppet-lint-variable_contains_upcase
       - gem: puppet-lint-version_comparison-check
+
+spec/default_facts.yml:
+  extra_facts:
+    operatingsystemrelease: 18.04

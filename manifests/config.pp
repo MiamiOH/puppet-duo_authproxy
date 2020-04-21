@@ -13,7 +13,7 @@ class duo_authproxy::config {
     path    => "${duo_authproxy::install_dir}/conf/authproxy.cfg",
     owner   => 'nobody',
     group   => 'root',
-    mode    => '0640',
+    mode    => '0400',
     content => Sensitive(template("${module_name}/authproxy.cfg.erb")),
   }
 }
