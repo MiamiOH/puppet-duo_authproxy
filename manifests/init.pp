@@ -25,9 +25,9 @@ class duo_authproxy (
     fail("${name} requires at least python version 2.6, you have ${facts[$python_version]}.")
   }
 
-  contain '::duo_authproxy::install'
-  contain '::duo_authproxy::config'
-  contain '::duo_authproxy::service'
+  contain 'duo_authproxy::install'
+  contain 'duo_authproxy::config'
+  contain 'duo_authproxy::service'
 
   Class['::duo_authproxy::install']
   -> Class['::duo_authproxy::config']
