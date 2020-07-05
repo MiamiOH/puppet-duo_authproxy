@@ -36,6 +36,7 @@ class duo_authproxy::install {
     environment => ['PYTHON=python'],
     path        => $facts['path'],
     creates     => $creates_path,
+    timeout     => 1800,
     require     => Package[$duo_authproxy::dep_packages],
   }
 
