@@ -15,16 +15,6 @@ class duo_authproxy (
   $proxy_type = undef,
 ) {
 
-  if $::operatingsystemrelease == '18.04' {
-    $python_version = 'python3_version'
-  }else {
-    $python_version = 'python_version'
-  }
-
-  unless versioncmp($facts[$python_version], '2.6') >= 0 {
-    fail("${name} requires at least python version 2.6, you have ${facts[$python_version]}.")
-  }
-
   contain 'duo_authproxy::install'
   contain 'duo_authproxy::config'
   contain 'duo_authproxy::service'
