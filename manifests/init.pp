@@ -10,9 +10,9 @@ class duo_authproxy (
   Array[String] $dep_packages,
   String $version,
   Stdlib::Absolutepath $install_dir,
-  Hash $settings = {},
-  $proxy_server = undef,
-  $proxy_type = undef,
+  Hash $settings,
+  Optional[String] $proxy_server,
+  Optional[Enum['none', 'ftp', 'http', 'https']] $proxy_type,
 ) {
 
   contain 'duo_authproxy::install'
@@ -21,10 +21,6 @@ class duo_authproxy (
 
   Class['::duo_authproxy::install']
   -> Class['::duo_authproxy::config']
-
-  Class['::duo_authproxy::install']
   ~> Class['::duo_authproxy::service']
 
-  Class['::duo_authproxy::config']
-  ~> Class['::duo_authproxy::service']
 }
