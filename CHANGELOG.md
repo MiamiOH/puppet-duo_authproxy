@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Removed `python_version` fact check due to the fact needing to be present before catalog run. If `Package['python']` was not present before including this module, the module init would fail.
 ### Changed
 - Moved init params into module hiera and restructued `osfamily` specific values.
+- Renamed param `dep_packages` to `compile_package_dependencies`.
 
 ## [v1.0.0]
 - Initial release.
