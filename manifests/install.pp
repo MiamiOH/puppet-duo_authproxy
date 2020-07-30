@@ -5,7 +5,14 @@
 class duo_authproxy::install {
 
   if ($duo_authproxy::manage_compile_package_dependencies) {
-    ensure_packages($duo_authproxy::compile_package_dependencies)
+    ensure_packages($duo_authproxy::package_dependencies, { 'before' => "Archive['/tmp/duoauthproxy-${duo_authproxy::version}-src.tgz']", })
+  }
+
+  if ($duo_authproxy::manage_python) {
+    package { [$duo_authproxy::python_package, "${duo_authproxy::python_package}-devel"]:
+      ensure => $duo_authproxy::python_ensure,
+      before => Archive["/tmp/duoauthproxy-${duo_authproxy::version}-src.tgz"],
+    }
   }
 
   if ($duo_authproxy::compile_package) {
@@ -33,16 +40,15 @@ class duo_authproxy::install {
     -> exec { 'duoauthproxy-make':
       command     => 'make > duoauthproxy-make.log',
       cwd         => "/tmp/duoauthproxy-${duo_authproxy::version}-src",
-      environment => ['PYTHON=python'],
+      environment => ["PYTHON=${duo_authproxy::python_package}"],
       path        => $facts['path'],
       creates     => $creates_path,
-      require     => Package[$duo_authproxy::dep_packages],
     }
 
     -> exec { 'duoauthproxy-install':
       command     => "/tmp/duoauthproxy-${duo_authproxy::version}-src/${inst_cmd} > duoauthproxy-install.log",
       cwd         => "/tmp/duoauthproxy-${duo_authproxy::version}-src",
-      environment => ['PYTHON=python'],
+      environment => ["PYTHON=${duo_authproxy::python_package}"],
       path        => $facts['path'],
       creates     => $creates_path,
     }

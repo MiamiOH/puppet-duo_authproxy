@@ -43,12 +43,22 @@
 #   Whether or not to compile the package source.  If set to false, the package will not be 
 #   compiled from source, and it will need to be installed by other means.
 #
-# @param compile_package_dependencies
+# @param package_dependencies
 #   An array of packages that are required to compile Duo Authentication Proxy from source.
 #   See https://duo.com/docs/authproxy-reference#installation for a complete list of packages.
 #
 # @param manage_package_dependencies
 #   Whether or not to manage the packages required to compile the Duo Authentication Proxy source.
+#
+# @param manage_python
+#   Whether or not to manage the `python` and `python-devel` packages.
+#
+# @param python_package
+#   The name of the python package.  This can be set if `manage_python => true` and the host is 
+#   using a versioned or otherwise non-standard python package name.
+#
+# @param python_package_ensure
+#   Ensure value for the `python` and `python-devel` packages.
 #
 class duo_authproxy (
   String $version,
@@ -58,7 +68,10 @@ class duo_authproxy (
   Optional[Enum['none', 'ftp', 'http', 'https']] $proxy_type,
   Boolean $compile_package,
   Boolean $manage_package_dependencies,
-  Array[String] $compile_package_dependencies,
+  Array[String] $package_dependencies,
+  Boolean $manage_python,
+  String $python_package,
+  Enum['present', 'latest', 'absent'] $python_package_ensure,
 ) {
 
   contain duo_authproxy::install

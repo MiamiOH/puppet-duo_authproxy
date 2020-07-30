@@ -1,5 +1,5 @@
 ---
-duo_authproxy::compile_package_dependencies:
+duo_authproxy::package_dependencies:
   - gcc
   - make
   - openssl-devel

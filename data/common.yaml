@@ -6,4 +6,7 @@ duo_authproxy::proxy_server:
 duo_authproxy::proxy_type: 'none'
 duo_authproxy::compile_package: true
 duo_authproxy::manage_package_dependencies: true
-duo_authproxy::compile_package_dependencies:
+duo_authproxy::package_dependencies:
+duo_authproxy::manage_python: false
+duo_authproxy::python_ensure: 'present'
+duo_authproxy::python_package: 'python3'

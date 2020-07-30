@@ -82,7 +82,7 @@ Data type: `Boolean`
 Whether or not to compile the package source.  If set to false, the package will not be
 compiled from source, and it will need to be installed by other means.
 
-##### `compile_package_dependencies`
+##### `package_dependencies`
 
 Data type: `Array[String]`
 
@@ -94,6 +94,25 @@ See https://duo.com/docs/authproxy-reference#installation for a complete list of
 Data type: `Boolean`
 
 Whether or not to manage the packages required to compile the Duo Authentication Proxy source.
+
+##### `manage_python`
+
+Data type: `Boolean`
+
+Whether or not to manage the `python` and `python-devel` packages.
+
+##### `python_package`
+
+Data type: `String`
+
+The name of the python package.  This can be set if `manage_python => true` and the host is
+using a versioned or otherwise non-standard python package name.
+
+##### `python_package_ensure`
+
+Data type: `String`
+
+Ensure value for the `python` and `python-devel` packages.
 
 ##### `version`
 

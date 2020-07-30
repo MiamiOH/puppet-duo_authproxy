@@ -9,11 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Param `compile_package` to optionally disable package compilation.
 - Param `manage_package_dependencies` to optionally disable managing dependency packages required to compile Duo Authentication Proxy from source.
+- Added support to install `python` and `python-devel`, which are required to run Duo Authentication Proxy.  It is recommend to use [puppet-python](https://forge.puppet.com/puppet/python) from Vox Pupuli to manage `python` and `python-devel`.
 ### Fixed
 - Removed `python_version` fact check due to the fact needing to be present before catalog run. If `Package['python']` was not present before including this module, the module init would fail.
 ### Changed
 - Moved init params into module hiera and restructued `osfamily` specific values.
-- Renamed param `dep_packages` to `compile_package_dependencies`.
+- Renamed param `dep_packages` to `package_dependencies`.
+- Removed module dependecy on [puppet-python](https://forge.puppet.com/puppet/python).
 
 ## [v1.0.0]
 - Initial release.
