@@ -8,5 +8,5 @@ duo_authproxy::compile_package: true
 duo_authproxy::manage_package_dependencies: true
 duo_authproxy::package_dependencies:
 duo_authproxy::manage_python: false
-duo_authproxy::python_ensure: 'present'
+duo_authproxy::python_package_ensure: 'present'
 duo_authproxy::python_package: 'python3'
