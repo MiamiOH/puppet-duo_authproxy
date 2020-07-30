@@ -1,15 +1,18 @@
 # Changelog
 
-* Added support for Ubuntu 18.04
-* Replaced deprecated stankevich-python dependency a with puppet-python
-* Updated pdk version
+All notable changes to this project will be documented in this file.
 
-## Release 0.1.0
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
-and this project adheres to [Semantic Versioning](http://semver.org).
+## [Unreleased]
+### Fixed
+- Removed `python_version` fact check due to the fact needing to be present before catalog run. If `Package['python']` was not present before including this module, the module init would fail.
+### Changed
+- Moved init params into module hiera and restructued `osfamily` specific values.
 
-## Release 0.1.0
+## [v1.0.0]
+- Initial release.
 
-### Summary
-Initial Release
+[unreleased]: https://github.com/jmcnatt/jmcnatt-duo_authproxy/compare/v0.1.1...HEAD
+[v1.0.0]: https://github.com/jmcnatt/jmcnatt-duo_authproxy/releases/tag/v1.0.0
