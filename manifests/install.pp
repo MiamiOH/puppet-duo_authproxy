@@ -1,11 +1,7 @@
-# duo_authproxy::install
+# @summary Installs and/or compiles the Duo Authentication Proxy package
 #
-# Private class that installs the auth proxy
+# @api private
 #
-# @summary install the proxy
-#
-# @example
-#   don't use this class directly
 class duo_authproxy::install {
 
   ensure_packages($duo_authproxy::dep_packages)
