@@ -75,6 +75,13 @@ class { 'duo_authproxy':
 
 The following parameters are available in the `duo_authproxy` class.
 
+##### `compile_package`
+
+Data type: `Boolean`
+
+Whether or not to compile the package source.  If set to false, the package will not be
+compiled from source, and it will need to be installed by other means.
+
 ##### `compile_package_dependencies`
 
 Data type: `Array[String]`
@@ -82,12 +89,11 @@ Data type: `Array[String]`
 An array of packages that are required to compile Duo Authentication Proxy from source.
 See https://duo.com/docs/authproxy-reference#installation for a complete list of packages.
 
-##### `compile_package`
+##### `manage_package_dependencies`
 
 Data type: `Boolean`
 
-Whether or not to compile the package source.  If set to false, the package will not be
-compiled from source, and it will need to be installed by other means.
+Whether or not to manage the packages required to compile the Duo Authentication Proxy source.
 
 ##### `version`
 

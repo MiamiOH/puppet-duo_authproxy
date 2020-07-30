@@ -4,7 +4,9 @@
 #
 class duo_authproxy::install {
 
-  ensure_packages($duo_authproxy::compile_package_dependencies)
+  if ($duo_authproxy::manage_compile_package_dependencies) {
+    ensure_packages($duo_authproxy::compile_package_dependencies)
+  }
 
   if ($duo_authproxy::compile_package) {
 
