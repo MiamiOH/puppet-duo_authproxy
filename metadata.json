@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "author": "Chris Edester",
   "summary": "Installs and configures Duo Authentication Proxy",
-  "license": "GPL-3.0+",
+  "license": "GPL-3.0-or-later",
   "source": "https://github.com/MiamiOH/puppet-duo_authproxy.git",
   "project_page": "https://github.com/MiamiOH/puppet-duo_authproxy",
   "issues_url": "https://github.com/MiamiOH/puppet-duo_authproxy/issues",
