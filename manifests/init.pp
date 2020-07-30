@@ -39,9 +39,17 @@
 #     },
 #   }
 #
+# @example Some users have experienced longer compilation times when `compile_package => true`.
+#   # Timeout can be extended by setting the `compile_package_timeout` value.
+#   duoauthproxy::compile_package_timeout: 800
+#
 # @param compile_package
 #   Whether or not to compile the package source.  If set to false, the package will not be 
 #   compiled from source, and it will need to be installed by other means.
+#
+# @param compile_package_timeout
+#   Increases the timeout value of the `exec` statement to compile the source package.  Useful when 
+#   Puppet times out during the intial run of this module.
 #
 # @param package_dependencies
 #   An array of packages that are required to compile Duo Authentication Proxy from source.
@@ -67,6 +75,7 @@ class duo_authproxy (
   Optional[String] $proxy_server,
   Optional[Enum['none', 'ftp', 'http', 'https']] $proxy_type,
   Boolean $compile_package,
+  Integer $compile_package_timeout,
   Boolean $manage_package_dependencies,
   Array[String] $package_dependencies,
   Boolean $manage_python,

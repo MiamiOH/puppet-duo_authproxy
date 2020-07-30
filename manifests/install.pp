@@ -43,6 +43,7 @@ class duo_authproxy::install {
       environment => ["PYTHON=${duo_authproxy::python_package}"],
       path        => $facts['path'],
       creates     => $creates_path,
+      timeout     => $duo_authproxy::compile_package_timeout,
     }
 
     -> exec { 'duoauthproxy-install':

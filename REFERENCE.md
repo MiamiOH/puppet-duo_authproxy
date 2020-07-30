@@ -71,6 +71,13 @@ class { 'duo_authproxy':
 }
 ```
 
+##### Some users have experienced longer compilation times when `compile_package => true`.
+
+```puppet
+# Timeout can be extended by setting the `compile_package_timeout` value.
+duoauthproxy::compile_package_timeout: 800
+```
+
 #### Parameters
 
 The following parameters are available in the `duo_authproxy` class.
@@ -81,6 +88,13 @@ Data type: `Boolean`
 
 Whether or not to compile the package source.  If set to false, the package will not be
 compiled from source, and it will need to be installed by other means.
+
+##### `compile_package_timeout`
+
+Data type: `Integer`
+
+Increases the timeout value of the `exec` statement to compile the source package.  Useful when
+Puppet times out during the intial run of this module.
 
 ##### `package_dependencies`
 
@@ -110,7 +124,7 @@ using a versioned or otherwise non-standard python package name.
 
 ##### `python_package_ensure`
 
-Data type: `String`
+Data type: `Enum['present', 'latest', 'absent']`
 
 Ensure value for the `python` and `python-devel` packages.
 
