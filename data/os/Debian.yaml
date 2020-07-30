@@ -1,6 +1,5 @@
 ---
-duo_authproxy::dep_packages:
+duo_authproxy::compile_package_dependencies:
   - build-essential
   - libssl-dev
-  - python-dev
   - libffi-dev

@@ -40,12 +40,12 @@
 #   }
 #
 class duo_authproxy (
-  Array[String] $dep_packages,
   String $version,
   Stdlib::Absolutepath $install_dir,
   Hash $settings,
   Optional[String] $proxy_server,
   Optional[Enum['none', 'ftp', 'http', 'https']] $proxy_type,
+  Array[String] $compile_package_dependencies,
 ) {
 
   contain duo_authproxy::install
