@@ -1,4 +1,6 @@
 ---
 duo_authproxy::version: 2.7.0
-duo_authproxy::install_dir: /opt/duoauthproxy
+duo_authproxy::install_dir: '/opt/duoauthproxy'
 duo_authproxy::settings:
+duo_authproxy::proxy_server:
+duo_authproxy::proxy_type: 'none'
