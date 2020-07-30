@@ -5,3 +5,4 @@ duo_authproxy::settings:
 duo_authproxy::proxy_server:
 duo_authproxy::proxy_type: 'none'
 duo_authproxy::compile_package_dependencies:
+duo_authproxy::compile_package: true

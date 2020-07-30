@@ -39,6 +39,14 @@
 #     },
 #   }
 #
+# @param compile_package_dependencies
+#   An array of packages that are required to compile Duo Authentication Proxy from source.
+#   See https://duo.com/docs/authproxy-reference#installation for a complete list of packages.
+#
+# @param compile_package
+#   Whether or not to compile the package source.  If set to false, the package will not be 
+#   compiled from source, and it will need to be installed by other means.
+#
 class duo_authproxy (
   String $version,
   Stdlib::Absolutepath $install_dir,
@@ -46,6 +54,7 @@ class duo_authproxy (
   Optional[String] $proxy_server,
   Optional[Enum['none', 'ftp', 'http', 'https']] $proxy_type,
   Array[String] $compile_package_dependencies,
+  Boolean $compile_package
 ) {
 
   contain duo_authproxy::install
