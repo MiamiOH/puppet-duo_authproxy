@@ -5,7 +5,8 @@
 class duo_authproxy::install {
 
   if ($duo_authproxy::manage_package_dependencies) {
-    ensure_packages($duo_authproxy::package_dependencies, { 'before' => "Archive['/tmp/duoauthproxy-${duo_authproxy::version}-src.tgz']", })
+    ensure_packages($duo_authproxy::package_dependencies)
+    Package[$duo_authproxy::package_dependencies] -> Archive["/tmp/duoauthproxy-${duo_authproxy::version}-src.tgz"]
   }
 
   if ($duo_authproxy::manage_python) {
