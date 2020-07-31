@@ -4,7 +4,7 @@
 #
 class duo_authproxy::install {
 
-  if ($duo_authproxy::manage_compile_package_dependencies) {
+  if ($duo_authproxy::manage_package_dependencies) {
     ensure_packages($duo_authproxy::package_dependencies, { 'before' => "Archive['/tmp/duoauthproxy-${duo_authproxy::version}-src.tgz']", })
   }
 
