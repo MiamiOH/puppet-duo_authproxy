@@ -8,7 +8,9 @@ class duo_authproxy::config {
 
   # Determine if settings are available in hiera and apply them
   $hiera_settings = lookup('duo_authproxy::settings', { merge => 'deep' })
-  notify { $hiera_settings:}
+  notify { 'notify':
+    message => $hiera_settings,
+  }
   if ($hiera_settings == $duo_authproxy::settings) {
     $settings = $hiera_settings
   }
