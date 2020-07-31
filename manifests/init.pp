@@ -43,6 +43,21 @@
 #   # Timeout can be extended by setting the `compile_package_timeout` value.
 #   duoauthproxy::compile_package_timeout: 800
 #
+# @param version
+#   The version of Duo Authentication Proxy to install and configure.
+#
+# @param install_dir
+#   The location on the filesystem where Duo Authentication Proxy will be installed.
+#
+# @param settings
+#   A hash containing the settings that will be saved in `authproxy.cfg`.  Supports hiera with deep merging.
+#
+# @param proxy_server
+#   The URL of the proxy, if needed, to download the source code.
+#
+# @param proxy_type
+#   If using an internal proxy for downloading the source code, the type can be speicified here.
+#
 # @param compile_package
 #   Whether or not to compile the package source.  If set to false, the package will not be 
 #   compiled from source, and it will need to be installed by other means.

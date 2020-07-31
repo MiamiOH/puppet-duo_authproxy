@@ -8,12 +8,12 @@
 _Public Classes_
 
 * [`duo_authproxy`](#duo_authproxy): Installs and configures Duo Authentication Proxy
-* [`duo_authproxy::config`](#duo_authproxyconfig): configure the proxy
-* [`duo_authproxy::service`](#duo_authproxyservice): manage the service
 
 _Private Classes_
 
+* `duo_authproxy::config`: Configures the Duo Authentication Proxy by setting the config file.
 * `duo_authproxy::install`: Installs and/or compiles the Duo Authentication Proxy package
+* `duo_authproxy::service`: Manages the service of the Duo Authentication Proxy.
 
 ## Classes
 
@@ -82,6 +82,36 @@ duoauthproxy::compile_package_timeout: 800
 
 The following parameters are available in the `duo_authproxy` class.
 
+##### `version`
+
+Data type: `String`
+
+The version of Duo Authentication Proxy to install and configure.
+
+##### `install_dir`
+
+Data type: `Stdlib::Absolutepath`
+
+The location on the filesystem where Duo Authentication Proxy will be installed.
+
+##### `settings`
+
+Data type: `Hash`
+
+A hash containing the settings that will be saved in `authproxy.cfg`.  Supports hiera with deep merging.
+
+##### `proxy_server`
+
+Data type: `Optional[String]`
+
+The URL of the proxy, if needed, to download the source code.
+
+##### `proxy_type`
+
+Data type: `Optional[Enum['none', 'ftp', 'http', 'https']]`
+
+If using an internal proxy for downloading the source code, the type can be speicified here.
+
 ##### `compile_package`
 
 Data type: `Boolean`
@@ -127,62 +157,4 @@ using a versioned or otherwise non-standard python package name.
 Data type: `Enum['present', 'latest', 'absent']`
 
 Ensure value for the `python` and `python-devel` packages.
-
-##### `version`
-
-Data type: `String`
-
-
-
-##### `install_dir`
-
-Data type: `Stdlib::Absolutepath`
-
-
-
-##### `settings`
-
-Data type: `Hash`
-
-
-
-##### `proxy_server`
-
-Data type: `Optional[String]`
-
-
-
-##### `proxy_type`
-
-Data type: `Optional[Enum['none', 'ftp', 'http', 'https']]`
-
-
-
-### duo_authproxy::config
-
-duo_authproxy::config
-
-Private class that configures the auth proxy
-
-#### Examples
-
-##### 
-
-```puppet
-don't use this class directly
-```
-
-### duo_authproxy::service
-
-duo_authproxy::service
-
-Private class that manages the service of the auth proxy
-
-#### Examples
-
-##### 
-
-```puppet
-don't use this class directly
-```
 
