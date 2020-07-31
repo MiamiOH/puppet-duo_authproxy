@@ -12,11 +12,11 @@ class duo_authproxy::config {
     message => $hiera_settings,
   }
   if ($hiera_settings == $duo_authproxy::settings) {
-    $settings = $hiera_settings
+    $settings = $duo_authproxy::settings
   }
 
   else {
-    $settings = $duo_authproxy::settings
+    $settings = $hiera_settings
   }
 
   file { $config_file:
