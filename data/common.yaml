@@ -1,3 +1,13 @@
 ---
-duo_authproxy::version: 2.7.0
-duo_authproxy::install_dir: /opt/duoauthproxy
+duo_authproxy::version: '4.0.2'
+duo_authproxy::install_dir: '/opt/duoauthproxy'
+duo_authproxy::settings:
+duo_authproxy::proxy_server:
+duo_authproxy::proxy_type: 'none'
+duo_authproxy::compile_package: true
+duo_authproxy::compile_package_timeout: 600
+duo_authproxy::manage_package_dependencies: true
+duo_authproxy::package_dependencies:
+duo_authproxy::manage_python: false
+duo_authproxy::python_package_ensure: 'present'
+duo_authproxy::python_package: 'python3'

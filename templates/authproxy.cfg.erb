@@ -1,6 +1,6 @@
 # Managed by Puppet.
 
-<% scope['duo_authproxy::settings'].map do |k,v| -%>
+<% scope['duo_authproxy::config::settings'].map do |k,v| -%>
 <%   if v.is_a?(Hash) -%>
 [<%=  k %>]
 <%     v.map do |ki, vi| -%>

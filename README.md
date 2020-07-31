@@ -8,9 +8,8 @@
     * [Setup requirements](#setup-requirements)
     * [Beginning with duo_authproxy](#beginning-with-duo_authproxy)
 3. [Usage - Configuration options and additional functionality](#usage)
-4. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
-5. [Limitations - OS compatibility, etc.](#limitations)
-6. [Development - Guide for contributing to the module](#development)
+4. [Limitations - OS compatibility, etc.](#limitations)
+5. [Development - Guide for contributing to the module](#development)
 
 ## Description
 
@@ -68,18 +67,16 @@ duo_authproxy::settings:
 duo_authproxy::proxy_server: http://my.proxy.com:80
 ```
 
-## Reference
-
-### Classes
-
-* duo_authproxy
-
 ## Limitations
 
-Only tested on Supported puppet versions; RedHat and Debian flavors
+See [metadata.json](metadata.json) for supported platforms.
 
 ## Development
 
 * Pull Requests welcome
 * Include spec tests
 * All tests need to pass
+
+### Authors
+Original code by Chris Edester.  Forked from https://github.com/MiamiOH.
+Updated verion by [Jimmy McNatt](https://github.com/jmcnatt).

@@ -1,11 +1,7 @@
-# duo_authproxy::service
+# @summary Manages the service of the Duo Authentication Proxy.
 #
-# Private class that manages the service of the auth proxy
+# @api private
 #
-# @summary manage the service
-#
-# @example
-#   don't use this class directly
 class duo_authproxy::service {
 
   service { 'duoauthproxy':
@@ -15,4 +11,5 @@ class duo_authproxy::service {
     hasstatus  => false, # the status on the init scrip does not return correct codes
     status     => "${duo_authproxy::install_dir}/bin/authproxyctl status",
   }
+
 }
