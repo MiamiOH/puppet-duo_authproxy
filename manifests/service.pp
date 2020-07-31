@@ -1,4 +1,4 @@
-# @summary Private class that manages the service of the Duo Authentication Proxy.
+# @summary Manages the service of the Duo Authentication Proxy.
 #
 # @api private
 #
