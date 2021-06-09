@@ -42,3 +42,5 @@ Rakefile:
 spec/default_facts.yml:
   extra_facts:
     operatingsystemrelease: 18.04
+spec/spec_helper.rb:
+  mock_with: ':rspec'

@@ -27,6 +27,7 @@ class duo_authproxy::install {
     command => "mv duoauthproxy-${duo_authproxy::version}*-src duoauthproxy-${duo_authproxy::version}-src",
     cwd     => '/tmp',
     path    => '/bin',
+    timeout => $duo_authproxy::exec_timeout,
     creates => $creates_path,
   }
 
@@ -35,6 +36,7 @@ class duo_authproxy::install {
     cwd         => "/tmp/duoauthproxy-${duo_authproxy::version}-src",
     environment => ['PYTHON=python'],
     path        => $facts['path'],
+    timeout     => $duo_authproxy::exec_timeout,
     creates     => $creates_path,
     require     => Package[$duo_authproxy::dep_packages],
   }
@@ -44,12 +46,14 @@ class duo_authproxy::install {
     cwd         => "/tmp/duoauthproxy-${duo_authproxy::version}-src",
     environment => ['PYTHON=python'],
     path        => $facts['path'],
+    timeout     => $duo_authproxy::exec_timeout,
     creates     => $creates_path,
   }
 
   -> exec { 'duoauthproxy-tag':
     command => "touch ${creates_path}",
     path    => $facts['path'],
+    timeout => $duo_authproxy::exec_timeout,
     creates => $creates_path,
   }
 }
