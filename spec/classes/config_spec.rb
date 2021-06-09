@@ -13,7 +13,10 @@ describe 'duo_authproxy::config' do
           is_expected.to contain_file('authproxy.cfg').with(
             'ensure'  => 'file',
             'path'    => '/opt/duoauthproxy/conf/authproxy.cfg',
-            'content' => "# Managed by Puppet.\n\n[main]\ndebug=true\n\n",
+            'owner'   => 'duo_authproxy_svc',
+            'group'   => 'root',
+            'mode'    => '0400',
+            'content' => 'Sensitive [value redacted]',
           )
         end
       end

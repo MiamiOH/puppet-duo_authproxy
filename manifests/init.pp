@@ -13,9 +13,10 @@ class duo_authproxy (
   Hash $settings = {},
   $proxy_server = undef,
   $proxy_type = undef,
+  $exec_timeout = 300,
 ) {
 
-  if $::operatingsystemrelease == '18.04' {
+  if ($::operatingsystemrelease == '18.04') or ($::operatingsystemrelease == '20.04') {
     $python_version = 'python3_version'
   }else {
     $python_version = 'python_version'
@@ -29,12 +30,12 @@ class duo_authproxy (
   contain 'duo_authproxy::config'
   contain 'duo_authproxy::service'
 
-  Class['::duo_authproxy::install']
-  -> Class['::duo_authproxy::config']
+  Class['duo_authproxy::install']
+  -> Class['duo_authproxy::config']
 
-  Class['::duo_authproxy::install']
-  ~> Class['::duo_authproxy::service']
+  Class['duo_authproxy::install']
+  ~> Class['duo_authproxy::service']
 
-  Class['::duo_authproxy::config']
-  ~> Class['::duo_authproxy::service']
+  Class['duo_authproxy::config']
+  ~> Class['duo_authproxy::service']
 }
