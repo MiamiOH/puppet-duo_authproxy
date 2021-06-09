@@ -16,7 +16,7 @@ class duo_authproxy (
   $exec_timeout = 300,
 ) {
 
-  if $::operatingsystemrelease == '18.04' {
+  if ($::operatingsystemrelease == '18.04') or ($::operatingsystemrelease == '20.04') {
     $python_version = 'python3_version'
   }else {
     $python_version = 'python_version'
