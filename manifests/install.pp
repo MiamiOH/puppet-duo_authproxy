@@ -63,8 +63,8 @@ class duo_authproxy::install {
 
     # Change ownership to match the specified user and group
     -> exec { "chown_${duo_authproxy::install_dir}":
-      command     => "/bin/chown -R ${duo_authproxy::user}:${duo_authproxy::group} ${duo_authproxy::install_dir}",
-      refreshonly => true,
+      command => "/bin/chown -R ${duo_authproxy::user}:${duo_authproxy::group} ${duo_authproxy::install_dir}",
+      path    => $facts['path'],
     }
 
   }
