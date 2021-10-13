@@ -1,5 +1,5 @@
 ---
-duo_authproxy::version: '4.0.2'
+duo_authproxy::version: '5.4.1'
 duo_authproxy::install_dir: '/opt/duoauthproxy'
 duo_authproxy::settings:
 duo_authproxy::user: 'duo_authproxy_svc'
