@@ -93,6 +93,8 @@ class duo_authproxy (
   String $version,
   Stdlib::Absolutepath $install_dir,
   Hash $settings,
+  String $user,
+  String $group,
   Optional[String] $proxy_server,
   Optional[Enum['none', 'ftp', 'http', 'https']] $proxy_type,
   Boolean $compile_package,
