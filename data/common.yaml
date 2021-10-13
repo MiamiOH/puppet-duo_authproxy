@@ -2,6 +2,8 @@
 duo_authproxy::version: '4.0.2'
 duo_authproxy::install_dir: '/opt/duoauthproxy'
 duo_authproxy::settings:
+duo_authproxy::user: 'duo_authproxy_svc'
+duo_authproxy::group: 'duo_authproxy_grp'
 duo_authproxy::proxy_server:
 duo_authproxy::proxy_type: 'none'
 duo_authproxy::compile_package: true

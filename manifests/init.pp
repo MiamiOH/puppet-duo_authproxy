@@ -52,6 +52,12 @@
 # @param settings
 #   A hash containing the settings that will be saved in `authproxy.cfg`.  Supports hiera with deep merging.
 #
+# @param user
+#   The user that owns the files and directories
+#
+# @param group
+#   The group that owns the files and directories
+#
 # @param proxy_server
 #   The URL of the proxy, if needed, to download the source code.
 #
