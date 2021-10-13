@@ -22,7 +22,7 @@ class duo_authproxy::config {
     owner   => $duo_authproxy::user,
     group   => $duo_authproxy::group,
     mode    => '0400',
-    content => Sensitive(template("${config_file}.erb")),
+    content => Sensitive(template("${module_name}/${config_file}.erb")),
   }
 
 }
