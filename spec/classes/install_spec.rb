@@ -16,7 +16,7 @@ describe 'duo_authproxy::install' do
           it { is_expected.to contain_package('build-essential') }
           it { is_expected.to contain_package('libffi-dev') }
         end
-        it { is_expected.to contain_archive('/tmp/duoauthproxy-2.7.0-src.tgz') }
+        it { is_expected.to contain_archive('/tmp/duoauthproxy-5.4.1-src.tgz') }
         it { is_expected.to contain_exec('duoauthproxy-install').with_command(%r{--install-dir /opt/duoauthproxy}) }
       end
     end
