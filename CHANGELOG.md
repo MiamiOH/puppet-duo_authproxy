@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+- Param `user` to specify the owner of the files and directories.
+- Param `group` to specify the group of of the files and directories.
 - Param `compile_package` to optionally disable package compilation.
 - Param `compile_package_timeout` to specifically how long Puppet should wait for the make `exec` operation.
 - Param `manage_package_dependencies` to optionally disable managing dependency packages required to compile Duo Authentication Proxy from source.
@@ -17,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Moved init params into module hiera and restructued `osfamily` specific values.
 - Renamed param `dep_packages` to `package_dependencies`.
 - Removed module dependecy on [puppet-python](https://forge.puppet.com/puppet/python).
+- Updated default install version to 5.4.1.
 
 ## [v1.0.0]
 - Initial release.

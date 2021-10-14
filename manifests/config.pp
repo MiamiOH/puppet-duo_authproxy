@@ -19,8 +19,8 @@ class duo_authproxy::config {
   file { $config_file:
     ensure  => file,
     path    => "${duo_authproxy::install_dir}/conf/${config_file}",
-    owner   => 'nobody',
-    group   => 'root',
+    owner   => $duo_authproxy::user,
+    group   => $duo_authproxy::group,
     mode    => '0400',
     content => Sensitive(template("${module_name}/${config_file}.erb")),
   }

@@ -55,6 +55,13 @@ class duo_authproxy::install {
       creates     => $creates_path,
     }
 
+    # Change ownership to match the specified user and group
+    -> exec { "chown_${duo_authproxy::install_dir}":
+      command => "chown -R ${duo_authproxy::user}:${duo_authproxy::group} ${duo_authproxy::install_dir}",
+      path    => $facts['path'],
+      creates => $creates_path,
+    }
+
     -> exec { 'duoauthproxy-tag':
       command => "touch ${creates_path}",
       path    => $facts['path'],
