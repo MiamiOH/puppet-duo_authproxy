@@ -47,7 +47,7 @@ include duo_authproxy
 ```
 ```yaml
 ---
-duo_authproxy::version: 2.7.0
+duo_authproxy::version: 5.4.1
 duo_authproxy::install_dir: /opt/duoauthproxy
 
 duo_authproxy::settings:
@@ -79,4 +79,4 @@ See [metadata.json](metadata.json) for supported platforms.
 
 ### Authors
 Original code by Chris Edester.  Forked from https://github.com/MiamiOH.
-Updated verion by [Jimmy McNatt](https://github.com/jmcnatt).
+Updated version by [Jimmy McNatt](https://github.com/jmcnatt).
