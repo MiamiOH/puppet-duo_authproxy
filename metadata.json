@@ -1,11 +1,12 @@
 {
+  "author": "Jimmy McNatt",
   "name": "jmcnatt-duo_authproxy",
   "version": "2.0.0",
   "summary": "Installs and configures Duo Authentication Proxy",
   "license": "GPL-3.0",
-  "source": "https://github.com/MiamiOH/puppet-duo_authproxy.git",
-  "project_page": "https://github.com/MiamiOH/puppet-duo_authproxy",
-  "issues_url": "https://github.com/MiamiOH/puppet-duo_authproxy/issues",
+  "source": "https://github.com/jmcnatt/jmcnatt-duo_authproxy.git",
+  "project_page": "https://github.com/jmcnatt/jmcnatt-duo_authproxy",
+  "issues_url": "https://github.com/jmcnatt/jmcnatt-duo_authproxy/issues",
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",
