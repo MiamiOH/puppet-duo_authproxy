@@ -1,6 +1,6 @@
 {
   "name": "MiamiOH-duo_authproxy",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "Chris Edester",
   "summary": "Installs and configures Duo Authentication Proxy",
   "license": "GPL-3.0+",
