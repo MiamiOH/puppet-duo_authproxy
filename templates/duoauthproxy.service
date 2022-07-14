@@ -1,0 +1,13 @@
+[Unit]
+Description=Duo Security Authentication Proxy
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=<%= scope['duo_authproxy::install_dir'] -%>/bin/authproxyctl start
+ExecStop=<%= scope['duo_authproxy::install_dir'] -%>/bin/authproxyctl stop
+StandardOutput=journal
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target

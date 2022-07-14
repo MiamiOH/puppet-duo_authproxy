@@ -3,6 +3,10 @@
 * Added support for Ubuntu 18.04
 * Replaced deprecated stankevich-python dependency a with puppet-python
 * Updated pdk version
+* Parameterize download location for closed environements
+* Prevent puppet timeout during make process
+* parameterize packages download directory
+* Set option to have authproxy service be a systemd unit file
 
 ## Release 0.1.0
 

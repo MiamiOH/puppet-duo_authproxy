@@ -49,7 +49,10 @@ include duo_authproxy
 ```yaml
 ---
 duo_authproxy::version: 2.7.0
+duo_authproxy::use_systemd: true
 duo_authproxy::install_dir: /opt/duoauthproxy
+duo_authproxy::download_loc: /var/tmp/duoauthproxy
+profile::authproxy::url: http://internal-server.com/rpms
 
 duo_authproxy::settings:
   main:
