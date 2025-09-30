@@ -11,30 +11,36 @@ class duo_authproxy (
   String $version,
   Stdlib::Absolutepath $install_dir,
   Hash $settings = {},
-  $proxy_server = undef,
-  $proxy_type = undef,
+  $proxy_server  = undef,
+  $proxy_type    = undef,
 ) {
 
-  if $::operatingsystemrelease == '18.04' {
-    $python_version = 'python3_version'
-  }else {
-    $python_version = 'python_version'
+  if $facts['os']['family'] == 'RedHat' {
+    if versioncmp($facts['os']['release']['major'], '8') < 0 {
+      $python_version = $facts['python3_version']
+    }
+  } elsif $facts['os']['family'] == 'Debian' {
+    if versioncmp($facts['operatingsystemrelease'], '18.04') < 0 {
+      $python_version = $facts['python3_version']
+    }
+  } else {
+    $python_version = $facts['python_version']
   }
 
-  unless versioncmp($facts[$python_version], '2.6') >= 0 {
-    fail("${name} requires at least python version 2.6, you have ${facts[$python_version]}.")
+  unless versioncmp($python_version, '2.6') >= 0 {
+    fail("${name} requires at least python version 2.6, you have ${python_version}.")
   }
 
   contain 'duo_authproxy::install'
   contain 'duo_authproxy::config'
   contain 'duo_authproxy::service'
 
-  Class['::duo_authproxy::install']
-  -> Class['::duo_authproxy::config']
+  Class['duo_authproxy::install']
+  -> Class['duo_authproxy::config']
 
-  Class['::duo_authproxy::install']
-  ~> Class['::duo_authproxy::service']
+  Class['duo_authproxy::install']
+  ~> Class['duo_authproxy::service']
 
-  Class['::duo_authproxy::config']
-  ~> Class['::duo_authproxy::service']
+  Class['duo_authproxy::config']
+  ~> Class['duo_authproxy::service']
 }
