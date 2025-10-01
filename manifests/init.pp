@@ -27,7 +27,7 @@ class duo_authproxy (
     $python_version = $facts['python_version']
   }
 
-  unless ($python_version and (versioncmp($python_version, '2.6') >= 0 )) {
+  unless (($python_version == undef) or (versioncmp($python_version, '2.6') >= 0 )) {
     fail("${name} requires at least python version 2.6, you have ${python_version}.")
   }
 
