@@ -3,5 +3,6 @@ duo_authproxy::dep_packages:
   - gcc
   - make
   - openssl-devel
-  - python3-devel
+  - python36-devel
   - libffi-devel
+duo_authproxy::python_env: python3

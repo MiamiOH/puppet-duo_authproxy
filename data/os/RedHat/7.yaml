@@ -5,3 +5,4 @@ duo_authproxy::dep_packages:
   - openssl-devel
   - python-devel
   - libffi-devel
+duo_authproxy::python_env: python

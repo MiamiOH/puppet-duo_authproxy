@@ -4,3 +4,4 @@ duo_authproxy::dep_packages:
   - libssl-dev
   - python-dev
   - libffi-dev
+duo_authproxy::python_env: python

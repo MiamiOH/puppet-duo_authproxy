@@ -33,7 +33,7 @@ class duo_authproxy::install {
   -> exec { 'duoauthproxy-make':
     command     => 'make > duoauthproxy-make.log',
     cwd         => "/tmp/duoauthproxy-${duo_authproxy::version}-src",
-    environment => ['PYTHON=python'],
+    environment => ["PYTHON=${duo_authproxy::python_env}"],
     path        => $facts['path'],
     creates     => $creates_path,
     require     => Package[$duo_authproxy::dep_packages],
@@ -42,7 +42,7 @@ class duo_authproxy::install {
   -> exec { 'duoauthproxy-install':
     command     => "/tmp/duoauthproxy-${duo_authproxy::version}-src/${inst_cmd} > duoauthproxy-install.log",
     cwd         => "/tmp/duoauthproxy-${duo_authproxy::version}-src",
-    environment => ['PYTHON=python'],
+    environment => ["PYTHON=${duo_authproxy::python_env}"],
     path        => $facts['path'],
     creates     => $creates_path,
   }

@@ -9,6 +9,7 @@
 class duo_authproxy (
   Array[String] $dep_packages,
   String $version,
+  String $python_env,
   Stdlib::Absolutepath $install_dir,
   Hash $settings = {},
   $proxy_server  = undef,
