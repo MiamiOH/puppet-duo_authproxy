@@ -12,27 +12,23 @@ class duo_authproxy::install {
 
   $inst_cmd = "duoauthproxy-build/install --install-dir ${duo_authproxy::install_dir} --service-user duo_authproxy_svc --log-group duo_authproxy_grp --create-init-script yes"
   $creates_path = "${duo_authproxy::install_dir}/${duo_authproxy::version}"
+  $source_path = "${duo_authproxy::extract_dir}/duoauthproxy-${duo_authproxy::version}-src"
 
-  archive { "/tmp/duoauthproxy-${duo_authproxy::version}-src.tgz":
-    source       => "https://dl.duosecurity.com/duoauthproxy-${duo_authproxy::version}-src.tgz",
-    extract      => true,
-    extract_path => '/tmp',
-    cleanup      => true,
-    creates      => $creates_path,
-    proxy_server => $duo_authproxy::proxy_server,
-    proxy_type   => $duo_authproxy::proxy_type,
-  }
-
-  -> exec { 'duoauthproxy-move':
-    command => "mv duoauthproxy-${duo_authproxy::version}*-src duoauthproxy-${duo_authproxy::version}-src",
-    cwd     => '/tmp',
-    path    => '/bin',
-    creates => $creates_path,
+  archive { "${source_path}.tgz":
+    source        => "https://dl.duosecurity.com/duoauthproxy-${duo_authproxy::version}-src.tgz",
+    extract       => true,
+    extract_path  => $duo_authproxy::extract_dir,
+    checksum      => $duo_authproxy::checksum,
+    checksum_type => 'sha256',
+    cleanup       => true,
+    creates       => $creates_path,
+    proxy_server  => $duo_authproxy::proxy_server,
+    proxy_type    => $duo_authproxy::proxy_type,
   }
 
   -> exec { 'duoauthproxy-make':
     command     => 'make > duoauthproxy-make.log',
-    cwd         => "/tmp/duoauthproxy-${duo_authproxy::version}-src",
+    cwd         => $source_path,
     environment => ["PYTHON=${duo_authproxy::python_env}"],
     path        => $facts['path'],
     creates     => $creates_path,
@@ -40,8 +36,8 @@ class duo_authproxy::install {
   }
 
   -> exec { 'duoauthproxy-install':
-    command     => "/tmp/duoauthproxy-${duo_authproxy::version}-src/${inst_cmd} > duoauthproxy-install.log",
-    cwd         => "/tmp/duoauthproxy-${duo_authproxy::version}-src",
+    command     => "${source_path}/${inst_cmd} > duoauthproxy-install.log",
+    cwd         => $source_path,
     environment => ["PYTHON=${duo_authproxy::python_env}"],
     path        => $facts['path'],
     creates     => $creates_path,

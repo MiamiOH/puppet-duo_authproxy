@@ -1,3 +1,6 @@
 ---
 duo_authproxy::version: 2.7.0
+duo_authproxy::checksum: 243cdbcb41471a6a77371766d39b5685849c31c2a32b3864fac9707f4c5b5eb9
+duo_authproxy::build_dir: /tmp
+duo_authproxy::extract_dir: /tmp
 duo_authproxy::install_dir: /opt/duoauthproxy
