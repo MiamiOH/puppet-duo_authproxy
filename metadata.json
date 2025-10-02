@@ -1,9 +1,9 @@
 {
   "name": "MiamiOH-duo_authproxy",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "author": "Chris Edester",
   "summary": "Installs and configures Duo Authentication Proxy",
-  "license": "GPL-3.0+",
+  "license": "GPL-3.0",
   "source": "https://github.com/MiamiOH/puppet-duo_authproxy.git",
   "project_page": "https://github.com/MiamiOH/puppet-duo_authproxy",
   "issues_url": "https://github.com/MiamiOH/puppet-duo_authproxy/issues",
@@ -23,28 +23,21 @@
   ],
   "operatingsystem_support": [
     {
-      "operatingsystem": "CentOS",
-      "operatingsystemrelease": [
-        "7"
-      ]
-    },
-    {
       "operatingsystem": "OracleLinux",
       "operatingsystemrelease": [
-        "7",
         "8"
       ]
     },
     {
       "operatingsystem": "RedHat",
       "operatingsystemrelease": [
-        "7"
+        "8"
       ]
     },
     {
       "operatingsystem": "Scientific",
       "operatingsystemrelease": [
-        "7"
+        "8"
       ]
     },
     {
@@ -56,7 +49,6 @@
     {
       "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [
-        "16.04",
         "18.04"
       ]
     }
@@ -64,7 +56,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 4.7.0 < 8.0.0"
+      "version_requirement": ">= 4.7.0 < 9.0.0"
     }
   ],
   "tags": [
@@ -72,7 +64,7 @@
     "authentication",
     "ldap"
   ],
-  "pdk-version": "1.18.0",
-  "template-url": "pdk-default#1.18.0",
-  "template-ref": "tags/1.18.0-0-g095317c"
+  "pdk-version": "3.4.0",
+  "template-url": "pdk-default#3.4.0",
+  "template-ref": "tags/3.4.0-0-gd3cc13f"
 }
