@@ -1,11 +1,10 @@
 # duo_authproxy
 
-#### Table of Contents
+## Table of Contents
 
 1. [Description](#description)
 2. [Setup - The basics of getting started with duo_authproxy](#setup)
     * [What duo_authproxy affects](#what-duo_authproxy-affects)
-    * [Setup requirements](#setup-requirements)
     * [Beginning with duo_authproxy](#beginning-with-duo_authproxy)
 3. [Usage - Configuration options and additional functionality](#usage)
 4. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
@@ -45,10 +44,12 @@ class { 'duo_authproxy':
 
 ```puppet
 include duo_authproxy
+
 ```
+
 ```yaml
 ---
-duo_authproxy::version: 2.7.0
+duo_authproxy::version: 6.5.2
 duo_authproxy::install_dir: /opt/duoauthproxy
 
 duo_authproxy::settings:
@@ -73,6 +74,52 @@ duo_authproxy::proxy_server: http://my.proxy.com:80
 ### Classes
 
 * duo_authproxy
+
+#### Parameters
+
+##### `dep_packages`
+
+  Array list of packages to install prior to build
+
+##### `version`
+
+  Version of duoauthproxy to install (default: 6.5.2)
+
+##### `python_env`
+
+  Executable for python
+
+##### `checksum`
+
+  sha-256 [checksum](https://duo.com/docs/checksums#duo-authentication-proxy) of downloaded tgz file
+
+##### `build_dir`
+
+  Absolute path to source directory
+
+##### `extract_dir`
+
+  Absolute path for extracted source files
+
+##### `install_dir`
+
+  Absolute path for installed binaries
+
+##### `extra_install_flags`
+
+  Additional flags to pass install script
+
+##### `settings`
+
+  Hash of values for main config
+
+##### `proxy_server`
+
+  Address of proxy server (if needed)
+
+##### `proxy_type`
+
+  Type of proxy (none|http|https|ftp)
 
 ## Limitations
 
