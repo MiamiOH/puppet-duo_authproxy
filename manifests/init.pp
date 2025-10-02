@@ -1,11 +1,47 @@
-# duo_authproxy
-#
-# Installs and configures Duo Authentication Proxy
-#
 # @summary Installs and configures Duo Authentication Proxy
 #
-# @example
-#   include duo_authproxy
+# @example Basic usage
+#   class { 'duo_authproxy':
+#     settings  => {
+#       'ad_client' => {
+#         'transport'           => 'ldaps',
+#         'ssl_ca_certs_file'   => 'ca-bundle.crt',
+#         'ssl_verify_hostname' => true,
+#       },
+#       'ldap_server_auto' => {
+#           'client'              => 'ad_client',
+#           'ssl_key_path'        => "${facts['fqdn']}.key",
+#           'ssl_cert_path'       => "${facts['fqdn']}.crt",
+#           'minimum_tls_version' => 'tls1.2',
+#       },
+#     },
+#   }
+#   contain 'duo_authproxy'
+#
+# @see https://github.com/MiamiOH/puppet-duo_authproxy
+#
+# @param dep_packages
+#   Array list of packages to install prior to build
+# @param version
+#   Version of duoauthproxy to install (default: 2.7.0)
+# @param python_env
+#   Executable for python
+# @param checksum
+#   sha-256 checksum of downloaded tgz file
+# @param build_dir
+#   Absolute path to source directory
+# @param extract_dir
+#   Absolute path for extracted source files
+# @param install_dir
+#   Absolute path for installed binaries
+# @param extra_install_flags
+#   Additional flags to pass install script
+# @param settings
+#   Hash of values for main config 
+# @param proxy_server
+#   Address of proxy server (if needed)
+# @param proxy_type
+#   Type of proxy (none|http|https|ftp)
 class duo_authproxy (
   Array[String] $dep_packages,
   String $version,
@@ -14,17 +50,17 @@ class duo_authproxy (
   Stdlib::Absolutepath $build_dir,
   Stdlib::Absolutepath $extract_dir,
   Stdlib::Absolutepath $install_dir,
-  Hash $settings = {},
-  $proxy_server  = undef,
-  $proxy_type    = undef,
+  String $extra_install_flags,
+  Hash   $settings      = {},
+  String $proxy_server  = undef,
+  String $proxy_type    = undef,
 ) {
-
   if $facts['os']['family'] == 'RedHat' {
     if versioncmp($facts['os']['release']['major'], '8') < 0 {
       $python_version = $facts['python3_version']
     }
   } elsif $facts['os']['family'] == 'Debian' {
-    if versioncmp($facts['operatingsystemrelease'], '18.04') < 0 {
+    if versioncmp($facts['os']['release']['full'], '18.04') < 0 {
       $python_version = $facts['python3_version']
     }
   } else {
