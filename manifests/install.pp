@@ -9,7 +9,16 @@
 class duo_authproxy::install {
   ensure_packages($duo_authproxy::dep_packages)
 
-  $inst_cmd = "duoauthproxy-build/install --install-dir ${duo_authproxy::install_dir} --service-user duo_authproxy_svc --log-group duo_authproxy_grp --create-init-script yes ${duo_authproxy::extra_install_flags}"
+  $_init_script = $duo_authproxy::init_script ? {
+    true    => 'yes',
+    default => 'no',
+  }
+  $_selinux = $duo_authproxy::selinux ? {
+    true    => 'yes',
+    default => 'no',
+  }
+
+  $inst_cmd = "duoauthproxy-build/install --install-dir ${duo_authproxy::install_dir} --service-user ${duo_authproxy::duo_authproxy_svc} --log-group ${duo_authproxy::duo_authproxy_grp} --create-init-script ${_init_script} --enable-selinux ${_selinux}"
   $creates_path = "${duo_authproxy::install_dir}/${duo_authproxy::version}"
   $source_path = "${duo_authproxy::extract_dir}/duoauthproxy-${duo_authproxy::version}-src"
 

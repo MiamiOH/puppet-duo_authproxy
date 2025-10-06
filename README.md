@@ -105,9 +105,21 @@ duo_authproxy::proxy_server: http://my.proxy.com:80
 
   Absolute path for installed binaries
 
-##### `extra_install_flags`
+##### `service_user`
 
-  Additional flags to pass install script
+  Service will run as specific user (default: duo_authproxy_svc)
+
+##### `log_group`
+
+  Syslog group for logging (default: duo_authproxy_grp)
+
+##### `init_script`
+
+  Whether to install systemd scripts (default: true)
+
+##### `selinux`
+
+  Whether to install the Authentication Proxy SELinux module (default: true)
 
 ##### `settings`
 

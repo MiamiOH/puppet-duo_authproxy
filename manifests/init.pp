@@ -23,7 +23,7 @@
 # @param dep_packages
 #   Array list of packages to install prior to build
 # @param version
-#   Version of duoauthproxy to install (default: 2.7.0)
+#   Version of duoauthproxy to install (default: 6.5.2)
 # @param python_env
 #   Executable for python
 # @param checksum
@@ -34,8 +34,14 @@
 #   Absolute path for extracted source files
 # @param install_dir
 #   Absolute path for installed binaries
-# @param extra_install_flags
-#   Additional flags to pass install script
+# @param service_user
+#   Service will run as specific user (default: duo_authproxy_svc)
+# @param log_group
+#   Syslog group for logging (default: duo_authproxy_grp)
+# @param init_script
+#   Whether to install systemd scripts (default: true)
+# @param selinux
+#   Whether to install the Authentication Proxy SELinux module (default: true)
 # @param settings
 #   Hash of values for main config 
 # @param proxy_server
@@ -44,16 +50,19 @@
 #   Type of proxy (none|http|https|ftp)
 class duo_authproxy (
   Array[String] $dep_packages,
-  String $version,
-  String $python_env,
-  String $checksum,
+  String  $version,
+  String  $python_env,
+  String  $checksum,
   Stdlib::Absolutepath $build_dir,
   Stdlib::Absolutepath $extract_dir,
   Stdlib::Absolutepath $install_dir,
-  String $extra_install_flags,
-  Hash   $settings      = {},
-  String $proxy_server  = undef,
-  String $proxy_type    = undef,
+  String  $service_user  = 'duo_authproxy_svc',
+  String  $log_group     = 'duo_authproxy_grp',
+  Boolean $init_script   = true,
+  Boolean $selinux       = true,
+  Hash    $settings      = {},
+  String  $proxy_server  = undef,
+  String  $proxy_type    = undef,
 ) {
   if $facts['os']['family'] == 'RedHat' {
     if versioncmp($facts['os']['release']['major'], '8') < 0 {
