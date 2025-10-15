@@ -50,19 +50,19 @@
 #   Type of proxy (none|http|https|ftp)
 class duo_authproxy (
   Array[String] $dep_packages,
-  String  $version,
-  String  $python_env,
-  String  $checksum,
+  Optional[String]  $version,
+  Optional[String]  $python_env,
+  Optional[String]  $checksum,
   Stdlib::Absolutepath $build_dir,
   Stdlib::Absolutepath $extract_dir,
   Stdlib::Absolutepath $install_dir,
-  String  $service_user  = 'duo_authproxy_svc',
-  String  $log_group     = 'duo_authproxy_grp',
-  Boolean $init_script   = true,
-  Boolean $selinux       = true,
-  Hash    $settings      = {},
-  String  $proxy_server  = undef,
-  String  $proxy_type    = undef,
+  String            $service_user  = 'duo_authproxy_svc',
+  String            $log_group     = 'duo_authproxy_grp',
+  Boolean           $init_script   = true,
+  Boolean           $selinux       = true,
+  Hash              $settings      = {},
+  Optional[String]  $proxy_server  = undef,
+  Optional[String]  $proxy_type    = undef,
 ) {
   if $facts['os']['family'] == 'RedHat' {
     if versioncmp($facts['os']['release']['major'], '8') < 0 {
