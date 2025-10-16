@@ -91,7 +91,7 @@ duo_authproxy::proxy_server: http://my.proxy.com:80
 
 ##### `checksum`
 
-  sha-256 [checksum](https://duo.com/docs/checksums#duo-authentication-proxy) of downloaded tgz file
+  REQUIRED: [sha-256 checksum](https://duo.com/docs/checksums#duo-authentication-proxy) of downloaded tgz file
 
 ##### `build_dir`
 

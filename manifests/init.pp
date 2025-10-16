@@ -26,14 +26,20 @@
 #   Version of duoauthproxy to install (default: 6.5.2)
 # @param python_env
 #   Executable for python
-# @param checksum
-#   sha-256 checksum of downloaded tgz file
 # @param build_dir
 #   Absolute path to source directory
 # @param extract_dir
 #   Absolute path for extracted source files
 # @param install_dir
 #   Absolute path for installed binaries
+# @param proxy_server
+#   Address of proxy server (if needed)
+# @param proxy_type
+#   Type of proxy (none|http|https|ftp)
+# @param settings
+#   Hash of values for main config 
+# @param checksum
+#   REQUIRED: sha-256 checksum of downloaded tgz file
 # @param service_user
 #   Service will run as specific user (default: duo_authproxy_svc)
 # @param log_group
@@ -42,27 +48,21 @@
 #   Whether to install systemd scripts (default: true)
 # @param selinux
 #   Whether to install the Authentication Proxy SELinux module (default: true)
-# @param settings
-#   Hash of values for main config 
-# @param proxy_server
-#   Address of proxy server (if needed)
-# @param proxy_type
-#   Type of proxy (none|http|https|ftp)
 class duo_authproxy (
-  Array[String] $dep_packages,
-  Optional[String]  $version,
-  Optional[String]  $python_env,
-  Optional[String]  $checksum,
-  Stdlib::Absolutepath $build_dir,
-  Stdlib::Absolutepath $extract_dir,
-  Stdlib::Absolutepath $install_dir,
-  String            $service_user  = 'duo_authproxy_svc',
-  String            $log_group     = 'duo_authproxy_grp',
-  Boolean           $init_script   = true,
-  Boolean           $selinux       = true,
-  Hash              $settings      = {},
-  Optional[String]  $proxy_server  = undef,
-  Optional[String]  $proxy_type    = undef,
+  Optional[Array[String]] $dep_packages,
+  Optional[String]        $version,
+  Optional[String]        $python_env,
+  Optional[Stdlib::Absolutepath]    $build_dir,
+  Optional[Stdlib::Absolutepath]    $extract_dir,
+  Optional[Stdlib::Absolutepath]    $install_dir,
+  Optional[String]        $proxy_server,
+  Optional[String]        $proxy_type,
+  Optional[Hash]          $settings,
+  String                  $checksum      = '67d8ca00f256f1fb65ade92e4bf3a788f12323312168440d03239b4a6f53fcfd',
+  String                  $service_user  = 'duo_authproxy_svc',
+  String                  $log_group     = 'duo_authproxy_grp',
+  Boolean                 $init_script   = true,
+  Boolean                 $selinux       = true,
 ) {
   if $facts['os']['family'] == 'RedHat' {
     if versioncmp($facts['os']['release']['major'], '8') < 0 {
