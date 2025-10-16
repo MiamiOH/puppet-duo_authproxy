@@ -101,13 +101,21 @@ duo_authproxy::proxy_server: http://my.proxy.com:80
 
   Absolute path for installed binaries
 
+##### `install_src`
+
+  Site from which to download source code (default: dl.duosecurity.com)
+
+##### `install_proto`
+
+  Protocol to use for download (default: https)
+
 ##### `proxy_server`
 
   Address of proxy server (if needed)
 
 ##### `proxy_type`
 
-  Type of proxy (none|http|https|ftp)
+  Type of proxy (none|http|https|ftp) (defaults to none if proxy_server is undef, otherwise defaults to $duo_authproxy::install_proto)
 
 ##### `settings`
 

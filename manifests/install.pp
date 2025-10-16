@@ -17,8 +17,12 @@ class duo_authproxy::install {
     true    => 'yes',
     default => 'no',
   }
-  $_proxy_type = $duo_authproxy::proxy_server ? {
+  $_proxy_type_from_url = $duo_authproxy::proxy_server ? {
     undef   => 'none',
+    default => $duo_authproxy::install_proto,
+  }
+  $_proxy_type = $duo_authproxy::proxy_type ? {
+    undef   => $_proxy_type_from_url,
     default => $duo_authproxy::proxy_type,
   }
 
@@ -27,7 +31,7 @@ class duo_authproxy::install {
   $source_path = "${duo_authproxy::extract_dir}/duoauthproxy-${duo_authproxy::version}-src"
 
   archive { "${source_path}.tgz":
-    source        => "https://dl.duosecurity.com/duoauthproxy-${duo_authproxy::version}-src.tgz",
+    source        => "${duo_authproxy::install_proto}://${duo_authproxy::install_src}/duoauthproxy-${duo_authproxy::version}-src.tgz",
     extract       => true,
     extract_path  => $duo_authproxy::extract_dir,
     checksum      => $duo_authproxy::checksum,

@@ -32,10 +32,14 @@
 #   Absolute path for extracted source files
 # @param install_dir
 #   Absolute path for installed binaries
+# @param install_src
+#   Site from which to download source code (default: dl.duosecurity.com)
+# @param install_proto
+#   Protocol to use for download (default: https)
 # @param proxy_server
 #   Address of proxy server (if needed)
 # @param proxy_type
-#   Type of proxy (none|http|https|ftp)
+#   Type of proxy (none|http|https|ftp) (defaults to none if proxy_server is undef, otherwise defaults to $duo_authproxy::install_proto)
 # @param settings
 #   Hash of values for main config 
 # @param checksum
@@ -55,6 +59,8 @@ class duo_authproxy (
   Optional[Stdlib::Absolutepath]    $build_dir,
   Optional[Stdlib::Absolutepath]    $extract_dir,
   Optional[Stdlib::Absolutepath]    $install_dir,
+  Optional[String]        $install_src,
+  Optional[String]        $install_proto,
   Optional[String]        $proxy_server,
   Optional[String]        $proxy_type,
   Optional[Hash]          $settings,
