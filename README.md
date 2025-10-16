@@ -89,10 +89,6 @@ duo_authproxy::proxy_server: http://my.proxy.com:80
 
   Executable for python
 
-##### `checksum`
-
-  REQUIRED: [sha-256 checksum](https://duo.com/docs/checksums#duo-authentication-proxy) of downloaded tgz file
-
 ##### `build_dir`
 
   Absolute path to source directory
@@ -104,6 +100,22 @@ duo_authproxy::proxy_server: http://my.proxy.com:80
 ##### `install_dir`
 
   Absolute path for installed binaries
+
+##### `proxy_server`
+
+  Address of proxy server (if needed)
+
+##### `proxy_type`
+
+  Type of proxy (none|http|https|ftp)
+
+##### `settings`
+
+  Hash of values for main config
+
+##### `checksum`
+
+  REQUIRED: [sha-256 checksum](https://duo.com/docs/checksums#duo-authentication-proxy) of downloaded tgz file
 
 ##### `service_user`
 
@@ -120,18 +132,6 @@ duo_authproxy::proxy_server: http://my.proxy.com:80
 ##### `selinux`
 
   Whether to install the Authentication Proxy SELinux module (default: true)
-
-##### `settings`
-
-  Hash of values for main config
-
-##### `proxy_server`
-
-  Address of proxy server (if needed)
-
-##### `proxy_type`
-
-  Type of proxy (none|http|https|ftp)
 
 ## Limitations
 
