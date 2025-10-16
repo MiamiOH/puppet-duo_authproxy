@@ -17,6 +17,10 @@ class duo_authproxy::install {
     true    => 'yes',
     default => 'no',
   }
+  $_proxy_type = $duo_authproxy::proxy_server ? {
+    undef   => 'none',
+    default => $duo_authproxy::proxy_type,
+  }
 
   $inst_cmd = "duoauthproxy-build/install --install-dir ${duo_authproxy::install_dir} --service-user ${duo_authproxy::service_user} --log-group ${duo_authproxy::log_group} --create-init-script ${_init_script} --enable-selinux ${_selinux}"
   $creates_path = "${duo_authproxy::install_dir}/${duo_authproxy::version}"
@@ -31,7 +35,7 @@ class duo_authproxy::install {
     cleanup       => true,
     creates       => $creates_path,
     proxy_server  => $duo_authproxy::proxy_server,
-    proxy_type    => $duo_authproxy::proxy_type,
+    proxy_type    => $_proxy_type,
   }
 
   -> exec { 'duoauthproxy-make':
