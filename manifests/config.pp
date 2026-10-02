@@ -13,6 +13,6 @@ class duo_authproxy::config {
     owner   => $duo_authproxy::service_user,
     group   => 'root',
     mode    => '0400',
-    content => Sensitive(template("${module_name}/authproxy.cfg.erb")),
+    content => Sensitive(epp("${module_name}/authproxy.cfg.epp", { 'settings' => $duo_authproxy::settings })),
   }
 }
