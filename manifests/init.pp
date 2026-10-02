@@ -23,7 +23,7 @@
 # @param dep_packages
 #   Array list of packages to install prior to build
 # @param version
-#   Version of duoauthproxy to install (default: 6.5.2)
+#   Version of duoauthproxy to install
 # @param python_env
 #   Executable for python
 # @param build_dir
@@ -36,12 +36,12 @@
 #   Site from which to download source code (default: dl.duosecurity.com)
 # @param install_proto
 #   Protocol to use for download (default: https)
+# @param settings
+#   Hash of values for main config 
 # @param proxy_server
 #   Address of proxy server (if needed)
 # @param proxy_type
 #   Type of proxy (none|http|https|ftp) (defaults to none if proxy_server is undef, otherwise defaults to $duo_authproxy::install_proto)
-# @param settings
-#   Hash of values for main config 
 # @param checksum
 #   REQUIRED: sha-256 checksum of downloaded tgz file
 # @param service_user
@@ -61,9 +61,9 @@ class duo_authproxy (
   Optional[Stdlib::Absolutepath]    $install_dir,
   Optional[String]        $install_src,
   Optional[String]        $install_proto,
-  Optional[String]        $proxy_server,
-  Optional[String]        $proxy_type,
   Optional[Hash]          $settings,
+  Optional[String]        $proxy_server = undef,
+  Optional[String]        $proxy_type   = undef,
   String                  $checksum      = '67d8ca00f256f1fb65ade92e4bf3a788f12323312168440d03239b4a6f53fcfd',
   String                  $service_user  = 'duo_authproxy_svc',
   String                  $log_group     = 'duo_authproxy_grp',

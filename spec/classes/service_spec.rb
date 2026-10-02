@@ -7,10 +7,17 @@ describe 'duo_authproxy::service' do
     context "on #{os}" do
       let(:facts) { os_facts }
 
-      context 'with defaults' do
-        it { is_expected.to compile.with_all_deps }
-        it { is_expected.to contain_service('duoauthproxy') }
-      end
+      it { is_expected.to compile.with_all_deps }
+
+      it {
+        is_expected.to contain_service('duoauthproxy').with(
+          ensure: 'running',
+          enable: true,
+          hasrestart: true,
+          hasstatus: false,
+          status: '/opt/duoauthproxy/bin/authproxyctl status',
+        )
+      }
     end
   end
 end
