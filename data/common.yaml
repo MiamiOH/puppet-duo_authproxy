@@ -12,6 +12,6 @@ duo_authproxy::settings:
     ssl_verify_hostname: true
   ldap_server_auto:
     client: ad_client
-    ssl_key_path: "%{::fqdn}.key"
-    ssl_cert_path: "%{::fqdn}.crt"
+    ssl_key_path: "%{facts.fqdn}.key"
+    ssl_cert_path: "%{facts.fqdn}.crt"
     minimum_tls_version: tls1.2
