@@ -42,6 +42,8 @@
 #   Address of proxy server (if needed)
 # @param proxy_type
 #   Type of proxy (none|http|https|ftp) (defaults to none if proxy_server is undef, otherwise defaults to $duo_authproxy::install_proto)
+# @param exec_timeout
+#   Timeout for exec resources
 # @param checksum
 #   REQUIRED: sha-256 checksum of downloaded tgz file
 # @param service_user
@@ -64,6 +66,7 @@ class duo_authproxy (
   Optional[Hash]          $settings,
   Optional[String]        $proxy_server = undef,
   Optional[String]        $proxy_type   = undef,
+  Optional[Integer]       $exec_timeout = undef,
   String                  $checksum      = '67d8ca00f256f1fb65ade92e4bf3a788f12323312168440d03239b4a6f53fcfd',
   String                  $service_user  = 'duo_authproxy_svc',
   String                  $log_group     = 'duo_authproxy_grp',

@@ -54,6 +54,68 @@ describe 'duo_authproxy::install' do
             .with_command(%r{touch /opt/duoauthproxy/})
         }
       end
+
+      context 'with exec_timeout set' do
+        let(:exec_timeout) { 200 }
+
+        let(:pre_condition) do
+          "class { 'duo_authproxy': exec_timeout => #{exec_timeout} }"
+        end
+
+        it {
+          is_expected.to contain_exec('duoauthproxy-make')
+            .with(
+              'command' => 'make > duoauthproxy-make.log',
+              'cwd' => %r{/tmp/duoauthproxy-.*-src},
+              'timeout' => exec_timeout,
+            )
+        }
+
+        it {
+          is_expected.to contain_exec('duoauthproxy-install')
+            .with(
+              'command' => %r{--install-dir /opt/duoauthproxy},
+              'timeout' => exec_timeout,
+            )
+        }
+
+        it {
+          is_expected.to contain_exec('duoauthproxy-tag')
+            .with(
+              'command' => %r{touch /opt/duoauthproxy/},
+              'timeout' => exec_timeout,
+            )
+        }
+      end
+
+      context 'with exec_timeout undef' do
+        let(:exec_timeout) { 'undef' }
+
+        let(:pre_condition) do
+          "class { 'duo_authproxy': exec_timeout => #{exec_timeout} }"
+        end
+
+        it {
+          is_expected.to contain_exec('duoauthproxy-make')
+            .with(
+              'command' => 'make > duoauthproxy-make.log',
+              'cwd' => %r{/tmp/duoauthproxy-.*-src},
+            )
+            .without_timeout
+        }
+
+        it {
+          is_expected.to contain_exec('duoauthproxy-install')
+            .with_command(%r{--install-dir /opt/duoauthproxy})
+            .without_timeout
+        }
+
+        it {
+          is_expected.to contain_exec('duoauthproxy-tag')
+            .with_command(%r{touch /opt/duoauthproxy/})
+            .without_timeout
+        }
+      end
     end
   end
 end
