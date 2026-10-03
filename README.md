@@ -29,13 +29,22 @@ Minimal duo_authproxy setup:
 
 ```puppet
 class { 'duo_authproxy':
-  settings => {
+  settings  => {
     # All required config sections and settings
-    'main' => {
-      'setting1' => 'value1',
+    'ad_client' => {
+      'transport'           => 'ldaps',
+      'ssl_ca_certs_file'   => 'ca-bundle.crt',
+      'ssl_verify_hostname' => true,
+    },
+    'ldap_server_auto' => {
+        'client'              => 'ad_client',
+        'ssl_key_path'        => "${facts['fqdn']}.key",
+        'ssl_cert_path'       => "${facts['fqdn']}.crt",
+        'minimum_tls_version' => 'tls1.2',
     },
   },
 }
+contain 'duo_authproxy'
 ```
 
 ## Usage
@@ -50,23 +59,22 @@ include duo_authproxy
 ```yaml
 ---
 duo_authproxy::version: 6.5.2
+duo_authproxy::build_dir: /tmp
+duo_authproxy::extract_dir: /tmp
 duo_authproxy::install_dir: /opt/duoauthproxy
-
+duo_authproxy::install_proto: https
+duo_authproxy::install_src: dl.duosecurity.com
+duo_authproxy::use_systemd: false
 duo_authproxy::settings:
-  main:
-    debug: true
-    http_proxy_host: my.proxy.com
-    http_proxy_port: 80
   ad_client:
-    host: some.host.com
-    service_account_username: testing
-    service_account_password: secret
-    search_dn: something
+    transport: ldaps
+    ssl_ca_certs_file: ca-bundle.crt
+    ssl_verify_hostname: true
   ldap_server_auto:
-    ikey: ikey
-    skey: skey
-    api_host: api_host
-duo_authproxy::proxy_server: http://my.proxy.com:80
+    client: ad_client
+    ssl_key_path: "%{facts.fqdn}.key"
+    ssl_cert_path: "%{facts.fqdn}.crt"
+    minimum_tls_version: tls1.2
 ```
 
 ## Reference
@@ -89,6 +97,10 @@ duo_authproxy::proxy_server: http://my.proxy.com:80
 
   Executable for python
 
+##### `use_systemd`
+
+  Use systemd (default: false)
+
 ##### `build_dir`
 
   Absolute path to source directory
@@ -109,6 +121,10 @@ duo_authproxy::proxy_server: http://my.proxy.com:80
 
   Protocol to use for download (default: https)
 
+##### `settings`
+
+  Hash of values for main config
+
 ##### `proxy_server`
 
   Address of proxy server (if needed)
@@ -117,9 +133,9 @@ duo_authproxy::proxy_server: http://my.proxy.com:80
 
   Type of proxy (none|http|https|ftp) (defaults to none if proxy_server is undef, otherwise defaults to $duo_authproxy::install_proto)
 
-##### `settings`
+##### `exec_timeout1
 
-  Hash of values for main config
+  Timeout for exec resources (defaults to undef)
 
 ##### `checksum`
 
