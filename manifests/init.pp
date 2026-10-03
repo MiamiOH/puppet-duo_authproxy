@@ -26,6 +26,8 @@
 #   Version of duoauthproxy to install
 # @param python_env
 #   Executable for python
+# @param use_systemd
+#   Use systemd (default: false)
 # @param build_dir
 #   Absolute path to source directory
 # @param extract_dir
@@ -58,6 +60,7 @@ class duo_authproxy (
   Optional[Array[String]] $dep_packages,
   Optional[String]        $version,
   Optional[String]        $python_env,
+  Optional[Boolean]       $use_systemd,
   Optional[Stdlib::Absolutepath]    $build_dir,
   Optional[Stdlib::Absolutepath]    $extract_dir,
   Optional[Stdlib::Absolutepath]    $install_dir,

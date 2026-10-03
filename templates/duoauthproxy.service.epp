@@ -1,0 +1,14 @@
+[Unit]
+Description=Duo Security Authentication Proxy
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=<%= $install_dir %>/bin/authproxyctl start
+ExecStop=<%= $install_dir %>/bin/authproxyctl stop
+StandardOutput=journal
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target
+

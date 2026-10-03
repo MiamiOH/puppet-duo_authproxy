@@ -7,11 +7,34 @@
 # @example
 #   don't use this class directly
 class duo_authproxy::service {
-  service { 'duoauthproxy':
-    ensure     => running,
-    enable     => true,
-    hasrestart => true,
-    hasstatus  => false, # the status on the init scrip does not return correct codes
-    status     => "${duo_authproxy::install_dir}/bin/authproxyctl status",
+  if $duo_authproxy::use_systemd {
+    file { '/etc/systemd/system/duoauthproxy.service':
+      ensure  => file,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      content => Sensitive(
+        epp(
+          "${module_name}/duoauthproxy.service.epp",
+          { 'install_dir' => $duo_authproxy::install_dir },
+        ),
+      ),
+    }
+
+    service { 'duoauthproxy':
+      ensure     => running,
+      enable     => true,
+      hasrestart => true,
+      provider   => systemd,
+      require    => File['/etc/systemd/system/duoauthproxy.service'],
+    }
+  } else {
+    service { 'duoauthproxy':
+      ensure     => running,
+      enable     => true,
+      hasrestart => true,
+      hasstatus  => false, # the status on the init scrip does not return correct codes
+      status     => "${duo_authproxy::install_dir}/bin/authproxyctl status",
+    }
   }
 }
