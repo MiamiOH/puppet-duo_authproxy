@@ -133,7 +133,7 @@ duo_authproxy::settings:
 
   Type of proxy (none|http|https|ftp) (defaults to none if proxy_server is undef, otherwise defaults to $duo_authproxy::install_proto)
 
-##### `exec_timeout1
+##### `exec_timeout`
 
   Timeout for exec resources (defaults to undef)
 
