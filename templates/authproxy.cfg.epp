@@ -1,0 +1,16 @@
+<%- | Hash $settings | -%>
+# Managed by Puppet.
+
+<%- $settings.each |$k, $v| { -%>
+[<%= $k %>]
+<%- if $v =~ Hash { -%>
+  <%- $v.each |$ki, $vi| { -%>
+    <%- if $vi =~ Array { -%>
+<%= $ki %>=<%= $vi.join(',') %>
+    <%- } elsif $vi !~ Undef { -%>
+<%= $ki %>=<%= $vi %>
+    <%- } -%>
+  <%- } -%>
+<%- } -%>
+
+<%- } -%>

@@ -1,6 +1,6 @@
 {
   "name": "MiamiOH-duo_authproxy",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "author": "Chris Edester",
   "summary": "Installs and configures Duo Authentication Proxy",
   "license": "GPL-3.0",
@@ -35,6 +35,13 @@
       ]
     },
     {
+      "operatingsystem": "Rocky",
+      "operatingsystemrelease": [
+        "8",
+        "9"
+      ]
+    },
+    {
       "operatingsystem": "Scientific",
       "operatingsystemrelease": [
         "8"
@@ -64,7 +71,7 @@
     "authentication",
     "ldap"
   ],
-  "pdk-version": "3.4.0",
-  "template-url": "pdk-default#3.4.0",
-  "template-ref": "tags/3.4.0-0-gd3cc13f"
+  "pdk-version": "3.5.1 (g7d6a7d3)",
+  "template-url": "pdk-default#3.5.1",
+  "template-ref": "tags/3.5.1-0-g9d5b193"
 }

@@ -48,6 +48,7 @@ class duo_authproxy::install {
     environment => ["PYTHON=${duo_authproxy::python_env}"],
     path        => $facts['path'],
     creates     => $creates_path,
+    timeout     => $duo_authproxy::exec_timeout,
     require     => Package[$duo_authproxy::dep_packages],
   }
 
@@ -57,11 +58,13 @@ class duo_authproxy::install {
     environment => ["PYTHON=${duo_authproxy::python_env}"],
     path        => $facts['path'],
     creates     => $creates_path,
+    timeout     => $duo_authproxy::exec_timeout,
   }
 
   -> exec { 'duoauthproxy-tag':
     command => "touch ${creates_path}",
     path    => $facts['path'],
     creates => $creates_path,
+    timeout => $duo_authproxy::exec_timeout,
   }
 }

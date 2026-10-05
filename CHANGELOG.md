@@ -1,5 +1,13 @@
 # Changelog
 
+## Release 2.1.0
+
+* Update pdk to 3.5.1
+* Remove legacy facts
+* Use modern epp template
+* Add option for exec timeout
+* Add option for systemd
+
 ## Release 2.0.0
 
 * Update pdk to 3.4.0
